@@ -1,7 +1,10 @@
 var gulp        = require('gulp'),
     remove      = require('gulp-rimraf'),
     eventStream = require('event-stream'),
-    spawn       = require('child_process').spawn,
+
+    htmlHint    = require('gulp-htmlhint'),
+    htmlW3C     = require('gulp-w3cjs'),
+    htmlWCAG    = require('gulp-accessibility'),
 
     sass        = require('gulp-sass'),
     scsslint    = require('gulp-scss-lint'),
@@ -10,18 +13,37 @@ var gulp        = require('gulp'),
 
     paths       = {
         files: {
-            css: 'stylesheets/**/*.css',
+            html: 'templates/**/*.html',
+            css:  'stylesheets/**/*.css',
             scss: 'stylesheets/**/*.scss',
-            js: 'scripts/**/*.js'
+            js:   'scripts/**/*.js'
         },
         folders: {
             css: 'stylesheets/css/'    
         }
     };
 
+/* HTML */
+gulp.task('html-hint', function () {
+    return gulp.src(paths.files.html)
+            .pipe(htmlHint())
+            .pipe(htmlHint.reporter())
+});
+
+gulp.task('html-w3c', function () {
+    return gulp.src(paths.files.html)
+            .pipe(htmlW3C());
+});
+
+gulp.task('html-wcag', function () {
+    return gulp.src(paths.files.html)
+            .pipe(htmlWCAG({}));
+});
+
 /* Stylesheets */
 gulp.task('css-clean', function () {
-    return gulp.src(paths.folders.css + 'main.css').pipe(remove());
+    return gulp.src(paths.folders.css + 'main.css')
+            .pipe(remove());
 });
 
 gulp.task('css-concat', ['css-clean'], function () {
@@ -41,11 +63,14 @@ gulp.task('css-minify', ['css-concat'], function () {
 
 gulp.task('scss-lint', function () {
     return gulp.src(paths.files.scss)
-        .pipe(scsslint());
+            .pipe(scsslint());
 });
 
-
 /* Watch */
+gulp.task('watch:html', function () {
+    gulp.watch([paths.files.html], ['html-hint', 'html-w3c', 'html-wcag']);
+});
+
 gulp.task('watch:css', function () {
     gulp.watch([paths.files.scss], ['scss-lint']);
     gulp.watch([paths.files.scss, paths.files.css], ['css-concat']);
