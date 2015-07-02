@@ -40,6 +40,8 @@ gulp.task('html-wcag', function () {
             .pipe(htmlWCAG({}));
 });
 
+gulp.task('html-check', ['html-hint', 'html-w3c', 'html-wcag']);
+
 /* Stylesheets */
 gulp.task('css-clean', function () {
     return gulp.src(paths.folders.css + 'main.css')
@@ -68,7 +70,7 @@ gulp.task('scss-lint', function () {
 
 /* Watch */
 gulp.task('watch:html', function () {
-    gulp.watch([paths.files.html], ['html-hint', 'html-w3c', 'html-wcag']);
+    gulp.watch([paths.files.html], ['html-check']);
 });
 
 gulp.task('watch:css', function () {
