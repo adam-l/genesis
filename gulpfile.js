@@ -2,6 +2,8 @@ var gulp        = require('gulp'),
     remove      = require('gulp-rimraf'),
     eventStream = require('event-stream'),
 
+    nameLint    = require('name-lint'),
+
     htmlHint    = require('gulp-htmlhint'),
     htmlW3C     = require('gulp-w3cjs'),
     htmlWCAG    = require('gulp-accessibility'),
@@ -23,11 +25,35 @@ var gulp        = require('gulp'),
         }
     };
 
+
+/* File naming */
+gulp.task('name-lint', function (cb) {
+    var regularExpression = /^_?[a-z0-9\-]+$/;
+
+    nameLint('.', {
+        'dirFormat': regularExpression,
+        'fileFormats': {
+            '.*': regularExpression
+        },
+        'exclude': [
+            'node_modules'
+        ],
+    }, function (error, matches) {
+        if (error) {
+            throw error
+        }
+
+        console.log(matches.join('\n'));
+        cb();
+    });
+});
+
+
 /* HTML */
 gulp.task('html-hint', function () {
     return gulp.src(paths.files.html)
             .pipe(htmlHint())
-            .pipe(htmlHint.reporter())
+            .pipe(htmlHint.reporter());
 });
 
 gulp.task('html-w3c', function () {
@@ -41,6 +67,7 @@ gulp.task('html-wcag', function () {
 });
 
 gulp.task('html-check', ['html-hint', 'html-w3c', 'html-wcag']);
+
 
 /* Stylesheets */
 gulp.task('css-clean', function () {
@@ -67,6 +94,7 @@ gulp.task('scss-lint', function () {
     return gulp.src(paths.files.scss)
             .pipe(scsslint());
 });
+
 
 /* Watch */
 gulp.task('watch:html', function () {
