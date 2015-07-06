@@ -27,7 +27,7 @@ var gulp        = require('gulp'),
 
 
 /* File naming */
-gulp.task('name-lint', function (cb) {
+gulp.task('name-lint', function (callback) {
     var regularExpression = /^_?[a-z0-9\-]+$/;
 
     nameLint('.', {
@@ -44,7 +44,7 @@ gulp.task('name-lint', function (cb) {
         }
 
         console.log(matches.join('\n'));
-        cb();
+        callback();
     });
 });
 
