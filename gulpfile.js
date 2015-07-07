@@ -15,13 +15,13 @@ var gulp        = require('gulp'),
 
     paths       = {
         files: {
-            html: 'templates/**/*.html',
-            css:  'stylesheets/**/*.css',
-            scss: 'stylesheets/**/*.scss',
-            js:   'scripts/**/*.js'
+            html: 'src/templates/**/*.html',
+            css:  'src/stylesheets/**/*.css',
+            scss: 'src/stylesheets/**/*.scss',
+            js:   'src/scripts/**/*.js'
         },
         folders: {
-            css: 'stylesheets/css/'    
+            css: 'src/stylesheets/css/'    
         }
     };
 
@@ -30,7 +30,7 @@ var gulp        = require('gulp'),
 gulp.task('name-lint', function (callback) {
     var regularExpression = /^_?[a-z0-9\-]+$/;
 
-    nameLint('.', {
+    nameLint('src/', {
         'dirFormat': regularExpression,
         'fileFormats': {
             '.*': regularExpression
