@@ -1,7 +1,39 @@
 # Genesis
+'Wise beginning of your next front-end project.'
 
 ## Browser support
 IE9+
+
+## Directory structure
+```
+├── dist/
+└── src/
+    ├── components/
+    │
+    ├── fonts/
+    │
+    ├── images/
+    │
+    ├── media/
+    │
+    ├── scripts/
+    │   ├── _cofeescript/
+    │   │
+    │   ├── htc/
+    │   │   └── vendor
+    │   │       └── PIE.htc
+    │   │
+    │   └── javascript/
+    │
+    ├── stylesheets/
+    │   ├── _scss/
+    │   │
+    │   └── css/
+    │
+    └── templates/
+        ├── _swig/
+        └── html/
+```
 
 ## Not what you were looking for?
 You were probably looking for this:
