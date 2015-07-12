@@ -11,7 +11,7 @@ IE9+
     ├── components/
     │
     ├── fonts/
-    │
+    │       
     ├── images/
     │
     ├── media/
@@ -34,6 +34,13 @@ IE9+
         ├── _swig/
         └── html/
 ```
+
+
+### `dist`
+This folder should be used only for deployment. Production files in this folder are generated from the source files located in the `src` folder.  By default this folder is not tracked by the version control system.
+
+The role of this folder is similiar to the role of folders often named `public`, `build` or `static` in other projects.
+
 
 ## Not what you were looking for?
 You were probably looking for this:
