@@ -50,7 +50,7 @@ The role of this folder is similiar to the role of folders often named `public`,
 **`docs`**  
 Use this folder to store documentation for the project. Different file formats can be used for documentation, for example: ``md``, ``rst``, ``html``, ``pdf``, ``doc``. This folder can also contain graphic files.
 
-**`docs/resources`**
+**`docs/resources`**  
 Any materials provided by stakeholders - logos, style guides, page layouts, project briefings and so on. In many cases this folder is going to contain graphic design files in the format of ``psd``.
 
 ## Not what you were looking for?
