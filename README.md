@@ -42,12 +42,12 @@ This section describes the project layout used in Genesis.
 ```
 
 
-`dist`
+`dist`  
 This folder should be used only for deployment. Production files in this folder are generated from the source files located in the `src` folder.  By default this folder is not tracked by the version control system.
 
 The role of this folder is similiar to the role of folders often named `public`, `build` or `static` in other projects.
 
-`docs`
+`docs`  
 Use this folder to store documentation for the project. Different file formats can be used for documentation, for example: ``md``, ``rst``, ``html``, ``pdf``, ``doc``. This folder can also contain graphic files.
 
 `docs/resources`
