@@ -66,7 +66,7 @@ gulp.task('html-wcag', function () {
             .pipe(htmlWCAG({}));
 });
 
-gulp.task('html-check', ['html-hint', 'html-w3c', 'html-wcag']);
+gulp.task('test:html', ['html-hint', 'html-w3c', 'html-wcag']);
 
 
 /* Stylesheets */
