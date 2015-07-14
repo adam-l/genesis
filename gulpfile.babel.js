@@ -4,7 +4,7 @@ import eventStream from 'event-stream';
 import remove      from 'gulp-rimraf';
 import concat      from 'gulp-concat';
 
-import nameLint    from require('name-lint');
+import nameLint    from 'name-lint';
 
 import htmlHint    from 'gulp-htmlhint';
 import htmlW3C     from 'gulp-w3cjs';
