@@ -1,29 +1,29 @@
-var gulp        = require('gulp'),
-    remove      = require('gulp-rimraf'),
-    eventStream = require('event-stream'),
+import gulp        from 'gulp';
+import remove      from 'gulp-rimraf';
+import eventStream from 'event-stream';
 
-    nameLint    = require('name-lint'),
+import nameLint    from 'name-lint';
 
-    htmlHint    = require('gulp-htmlhint'),
-    htmlW3C     = require('gulp-w3cjs'),
-    htmlWCAG    = require('gulp-accessibility'),
+import htmlHint    from 'gulp-htmlhint';
+import htmlW3C     from 'gulp-w3cjs';
+import htmlWCAG    from 'gulp-accessibility';
 
-    sass        = require('gulp-sass'),
-    scsslint    = require('gulp-scss-lint'),
-    minifyCSS   = require('gulp-minify-css'),
-    concat      = require('gulp-concat'),
+import sass        from 'gulp-sass';
+import scsslint    from 'gulp-scss-lint';
+import minifyCSS   from 'gulp-minify-css';
+import concat      from 'gulp-concat';
 
-    paths       = {
-        files: {
-            html: 'src/templates/**/*.html',
-            css:  'src/stylesheets/**/*.css',
-            scss: 'src/stylesheets/**/*.scss',
-            js:   'src/scripts/**/*.js'
-        },
-        folders: {
-            css: 'src/stylesheets/css/'    
-        }
-    };
+var paths = {
+    files: {
+        html: 'src/templates/**/*.html',
+        css:  'src/stylesheets/**/*.css',
+        scss: 'src/stylesheets/**/*.scss',
+        js:   'src/scripts/**/*.js'
+    },
+    folders: {
+        css: 'src/stylesheets/css/'    
+    }
+};
 
 
 /* File naming */
