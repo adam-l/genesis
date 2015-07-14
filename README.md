@@ -16,33 +16,37 @@ This section describes the project layout provided by Genesis.
 ├── docs/
 │   └── resources/
 │
-└── src/
-    ├── components/
-    │
-    ├── fonts/
-    │
-    ├── images/
-    │
-    ├── media/
-    │
-    ├── scripts/
-    │   ├── _coffeescript/
-    │   │
-    │   ├── htc/
-    │   │   └── vendor
-    │   │       └── PIE.htc
-    │   │
-    │   └── javascript/
-    │
-    ├── stylesheets/
-    │   ├── _scss/
-    │   │
-    │   └── css/
-    │
-    └── templates/
-        ├── _swig/
-        │
-        └── html/
+├── node_modules/
+│
+├── src/
+│   ├── components/
+│   │
+│   ├── fonts/
+│   │
+│   ├── images/
+│   │
+│   ├── media/
+│   │
+│   ├── scripts/
+│   │   ├── _coffeescript/
+│   │   │
+│   │   ├── htc/
+│   │   │   └── vendor
+│   │   │       └── PIE.htc
+│   │   │
+│   │   └── javascript/
+│   │
+│   ├── stylesheets/
+│   │   ├── _scss/
+│   │   │
+│   │   └── css/
+│   │
+│   └── templates/
+│       ├── _swig/
+│       │
+│       └── html/
+│
+└── temp/
 ```
 
 **`dist`**  
