@@ -1,9 +1,11 @@
 {
   "name": "genesis",
-  "version": "0.0.4",
+  "version": "0.1.4",
   "description": "Less then a front-end framework, more then a boilerplate.",
   "homepage": "https://github.com/adam-l/genesis/",
   "devDependencies": {
+    "babel": "^5.6.14",
+    "babel-core": "^5.6.20",
     "gulp": "^3.9.0",
     "gulp-rimraf": "^0.1.1",
     "event-stream": "^3.3.1",
