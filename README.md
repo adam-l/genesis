@@ -1,11 +1,14 @@
 # Genesis
 > Wise beginning of your next project
 
+
 ## Browser support
 IE9+
 
+
 ## Directory structure
-This section describes the project layout used in Genesis.
+This section describes the project layout provided by Genesis.
+
 
 ```
 ├── dist/
@@ -17,7 +20,7 @@ This section describes the project layout used in Genesis.
     ├── components/
     │
     ├── fonts/
-    │       
+    │
     ├── images/
     │
     ├── media/
@@ -41,7 +44,6 @@ This section describes the project layout used in Genesis.
         └── html/
 ```
 
-
 **`dist`**  
 This folder should be used only for deployment. Production files in this folder are generated from the source files located in the `src` folder.  By default this folder is not tracked by the version control system.
 
@@ -52,6 +54,12 @@ Use this folder to store documentation for the project. Different file formats c
 
 **`docs/resources`**  
 Any materials provided by stakeholders - logos, style guides, page layouts, project briefings and so on. In many cases this folder is going to contain graphic design files in the format of ``psd``.
+
+**`src`**  
+The folder contains all the assets source files. This is where all development work is done. Compiled files are generated (either automatically or manually) in the distribution folder where they are waiting for deployment.
+
+You may find this folder similiar to the ``assets`` folder in popular frameworks such as [Rails](http://edgeguides.rubyonrails.org/asset_pipeline.html#asset-organization), [Sails.js](http://sailsjs-documentation.readthedocs.org/en/latest/concepts/Assets/) or [Play](https://www.playframework.com/documentation/2.0/Anatomy#The-standard-application-layout).
+
 
 ## Not what you were looking for?
 You were probably looking for this:
