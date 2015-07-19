@@ -46,7 +46,9 @@ This section describes the project layout provided by Genesis.
 │       │
 │       └── html/
 │
-└── temp/
+├── temp/
+│
+└── vendor/
 ```
 
 **`dist`**  
@@ -64,7 +66,6 @@ Any materials provided by stakeholders - logos, style guides, page layouts, proj
 The folder contains all the assets source files. This is where all development work is done. Compiled files are generated (either automatically or manually) in the distribution folder where they are waiting for deployment.
 
 You may find this folder similiar to the `assets` folder in popular frameworks such as [Rails](http://edgeguides.rubyonrails.org/asset_pipeline.html#asset-organization), [Sails.js](http://sailsjs-documentation.readthedocs.org/en/latest/concepts/Assets/) or [Play](https://www.playframework.com/documentation/2.0/Anatomy#The-standard-application-layout).
-
 
 ## Not what you were looking for?
 You were probably looking for this:
