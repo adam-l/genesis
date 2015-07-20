@@ -1,27 +1,29 @@
-import gulp         from 'gulp';
-import eventStream  from 'event-stream';
-import runSequence  from 'run-sequence';
-import chalk        from 'chalk';
+import gulp        from 'gulp';
+import eventStream from 'event-stream';
+import runSequence from 'run-sequence';
+import {exec}      from 'child_process';
+import chalk       from 'chalk';
 
-import remove       from 'rimraf';
-import concat       from 'gulp-concat';
+import remove      from 'rimraf';
+import concat      from 'gulp-concat';
 
-import nameLint     from 'name-lint';
+import nameLint    from 'name-lint';
 
-import swig         from 'gulp-swig'
-import htmlHint     from 'gulp-htmlhint';
-import htmlW3C      from 'gulp-w3cjs';
-import htmlWCAG     from 'gulp-accessibility';
+import swig        from 'gulp-swig'
+import htmlHint    from 'gulp-htmlhint';
+import htmlW3C     from 'gulp-w3cjs';
+import htmlWCAG    from 'gulp-accessibility';
 
-import sass         from 'gulp-sass';
-import scssLint     from 'gulp-scss-lint';
-import cssW3C       from 'gulp-w3c-css';
-import minifyCSS    from 'gulp-minify-css';
+import sass        from 'gulp-sass';
+import scssLint    from 'gulp-scss-lint';
+import cssW3C      from 'gulp-w3c-css';
+import parker      from 'gulp-parker';
+import minifyCSS   from 'gulp-minify-css';
 
 var paths = {
     folders: {
         css:     'src/stylesheets/css/',
-        cssTemp: 'temp/css-w3c/'
+        cssTemp: 'temp/css-testing/'
     },
     files: {
         html:    'src/templates/**/*.html',
@@ -29,7 +31,7 @@ var paths = {
         scss:    'src/stylesheets/**/*.scss',        
         css:     'src/stylesheets/**/*.css',
         js:      'src/scripts/**/*.js',
-        cssTemp: 'temp/css-w3c/**/*.css'
+        cssTemp: 'temp/css-test/**/*.css'
     }
 };
 
@@ -84,20 +86,21 @@ gulp.task('test:html', callback => {
     runSequence('html-hint', 'html-w3c', 'html-wcag', callback);
 });
 
-/* Stylesheets */
-gulp.task('css-clean', callback => {
-    remove(paths.folders.css + 'main.css', () => {
-        callback();
-    });
-});
 
-gulp.task('css-concat', ['css-clean'], () => {
+/* Stylesheets */
+gulp.task('css-concat', (callback) => {
     var compiled = gulp.src(paths.files.scss).pipe(sass()),
         css      = gulp.src(paths.files.css);
 
+        console.log('a');
+
     return eventStream.merge(compiled, css)
-            .pipe(concat('main.css'))
-            .pipe(gulp.dest(paths.folders.css));
+            .pipe(concat('main.css').on('end', () => {
+                remove(paths.folders.cssTemp + 'main.css', () => {
+                            console.log('a');
+                });                
+            }))
+            .pipe(gulp.dest(paths.folders.cssTemp));
 });
 
 gulp.task('css-minify', ['css-concat'], () => {
@@ -106,48 +109,62 @@ gulp.task('css-minify', ['css-concat'], () => {
             .pipe(gulp.dest(paths.folders.css));
 });
 
-gulp.task('css-w3c-clean', callback => {
-    remove(paths.folders.cssTemp, callback);
-});
-
-gulp.task('css-w3c-compile', ['css-w3c-clean'], () => {
+gulp.task('compile-test-css', ['clean-css-testing-temp'], () => {
     return gulp.src(paths.files.scss)
             .pipe(sass())
             .pipe(gulp.dest(paths.folders.cssTemp));
 });
 
-gulp.task('css-w3c-output', ['css-w3c-compile'], callback => {
-    var output = '';
-
-    return gulp.src(paths.files.cssTemp)
-            .pipe(cssW3C())
-            .pipe(eventStream.through(file => {
-                var fileValidationResults = JSON.parse(file.contents.toString());
-
-                output += 'Tested file: ' + chalk.underline(file.relative) + '\n';
-
-                Object.keys(fileValidationResults).forEach(messageType => {
-                    output += chalk.bgRed.bold('Number of ' + messageType + ' found: '
-                                                 + (fileValidationResults[messageType].length || 0)) + '\n';
-
-                    fileValidationResults[messageType].forEach(message => {
-                        output += chalk.bgWhite.black(message.line) + ' ';
-                        output += message.context ? chalk.bgBlack.bold(message.context) + ' ' : '';
-                        output += message.message.replace(/\s\s+/g, ' ') + (messageType === 'warnings' ? '\n' : '');
-                        output += message.skippedString ? message.skippedString.replace(/\s\s+/g, ' ') + '\n' : '';
-                    });
-                });
-            }, () => {
-                if (output) {
-                    console.log(output);
-                };
-
-                callback();
-            }));
+gulp.task('test:css-metrics', ['compile-test-css'], () => {
+    return gulp.src([paths.files.cssTemp, paths.files.css])
+            .pipe(concat('main.css'))
+            .pipe(parker());
 });
 
-gulp.task('test:css-w3c', callback => {
-    runSequence('css-w3c-output', 'css-w3c-clean', callback);
+gulp.task('test:css-w3c', ['compile-test-css'], callback => {
+    var output = '';
+
+    gulp.src([paths.files.cssTemp, paths.files.css])
+        .pipe(cssW3C())
+        .pipe(eventStream.through(file => {
+            var fileValidationResults = JSON.parse(file.contents.toString());
+
+            output += 'Tested file: ' + chalk.underline(file.relative) + '\n';
+
+            Object.keys(fileValidationResults).forEach(messageType => {
+                output += chalk.bgRed.bold('Number of ' + messageType + ' found: '
+                                             + (fileValidationResults[messageType].length || 0)) + '\n';
+
+                fileValidationResults[messageType].forEach(message => {
+                    output += chalk.bgWhite.black(message.line) + ' ';
+                    output += message.context ? chalk.bgBlack.bold(message.context) + ' ' : '';
+                    output += message.message.replace(/\s\s+/g, ' ') + (messageType === 'warnings' ? '\n' : '');
+                    output += message.skippedString ? message.skippedString.replace(/\s\s+/g, ' ') + '\n' : '';
+                });
+            });
+        }, () => {
+            if (output) {
+                console.log(output);
+            };
+
+            callback();
+        }));
+});
+
+gulp.task('clean-css-testing-temp', callback => {
+    remove(paths.folders.cssTemp, callback);
+});
+
+gulp.task('test:css-redundancy', ['css-concat'], callback => {
+    exec('csscss ' + paths.folders.cssTemp + 'main.css', (error, stdout) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(stdout);            
+        }
+
+        callback();
+    });
 });
 
 gulp.task('test:scss-lint', () => {
@@ -156,7 +173,7 @@ gulp.task('test:scss-lint', () => {
 });
 
 gulp.task('test:css', callback => {
-    runSequence('test:scss-lint', 'test:css-w3c', callback);
+    runSequence('test:scss-lint', 'test:css-w3c', 'test:css-metrics', 'test:css-redundancy', 'clean-css-testing-temp', callback);
 });
 
 gulp.task('test', callback => {
