@@ -30,10 +30,6 @@ This section describes the project layout provided by Genesis.
 │   ├── scripts/
 │   │   ├── _coffeescript/
 │   │   │
-│   │   ├── htc/
-│   │   │   └── vendor
-│   │   │       └── PIE.htc
-│   │   │
 │   │   └── javascript/
 │   │
 │   ├── stylesheets/
