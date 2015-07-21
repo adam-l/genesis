@@ -1,7 +1,7 @@
 import gulp        from 'gulp';
+import {exec}      from 'child_process';
 import eventStream from 'event-stream';
 import runSequence from 'run-sequence';
-import {exec}      from 'child_process';
 import chalk       from 'chalk';
 
 import remove      from 'rimraf';
@@ -92,13 +92,9 @@ gulp.task('css-concat', (callback) => {
     var compiled = gulp.src(paths.files.scss).pipe(sass()),
         css      = gulp.src(paths.files.css);
 
-        console.log('a');
-
     return eventStream.merge(compiled, css)
             .pipe(concat('main.css').on('end', () => {
-                remove(paths.folders.cssTemp + 'main.css', () => {
-                            console.log('a');
-                });                
+                remove(paths.folders.cssTemp + 'main.css', () => {});                
             }))
             .pipe(gulp.dest(paths.folders.cssTemp));
 });
