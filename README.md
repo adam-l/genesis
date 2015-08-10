@@ -1,4 +1,4 @@
-# Genesis
+# Genesis [![Build Status](https://travis-ci.org/adam-l/genesis.svg?branch=master)](https://travis-ci.org/adam-l/genesis)
 > Wise beginning of your next project
 
 
