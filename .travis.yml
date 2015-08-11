@@ -3,4 +3,7 @@ node_js:
   - '0.12'
 install:
   - gem install scss-lint
+  - gem install csscss
   - npm install
+script:
+  - gulp test
