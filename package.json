@@ -1,6 +1,6 @@
 {
   "name": "genesis-fed",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Less then a front-end framework, more then a boilerplate.",
   "homepage": "https://github.com/adam-l/genesis/",
   "devDependencies": {
@@ -18,7 +18,7 @@
     "gulp-scss-lint": "^0.2.0",
     "gulp-swig": "^0.7.4",
     "gulp-w3cjs": "^1.0.0",
-    "gulp-w3c-css": "2.11.2",
+    "gulp-w3c-css": "0.1.2",
     "name-lint": "^1.0.5",
     "rimraf": "^2.4.1",
     "run-sequence": "^1.1.1"
