@@ -1,4 +1,6 @@
-# Genesis [![Build Status](https://travis-ci.org/adam-l/genesis.svg?branch=master)](https://travis-ci.org/adam-l/genesis)
+# Genesis
+[![Build Status](https://travis-ci.org/adam-l/genesis.svg?branch=master)](https://travis-ci.org/adam-l/genesis)
+[![npm version](https://badge.fury.io/js/genesis-fed.svg)](http://badge.fury.io/js/genesis-fed)
 > Wise beginning of your next project
 
 
