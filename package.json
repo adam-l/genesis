@@ -1,6 +1,6 @@
 {
   "name": "genesis-fed",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Less then a front-end framework, more then a boilerplate.",
   "homepage": "https://github.com/adam-l/genesis/",
   "devDependencies": {

@@ -11,6 +11,8 @@ This section describes the project layout provided by Genesis.
 
 
 ```
+├── config/
+│
 ├── dist/
 │
 ├── docs/
@@ -46,6 +48,11 @@ This section describes the project layout provided by Genesis.
 │
 └── vendor/
 ```
+
+**`config`**  
+This folder contains all configuration files. Use this folder to store any settings files for your project.
+
+Paths used in Gulp tasks are defined in gulp-paths.js file that is stored in this folder.
 
 **`dist`**  
 This folder should be used only for deployment - making changes directly to the files located here is not recommended. Production files in this folder are generated from the source files located in the `src` folder. By default this folder is not tracked by the version control system.

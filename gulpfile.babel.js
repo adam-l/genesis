@@ -1,3 +1,4 @@
+// Tools
 import gulp        from 'gulp';
 import {exec}      from 'child_process';
 import eventStream from 'event-stream';
@@ -20,23 +21,11 @@ import cssW3C      from 'gulp-w3c-css';
 import parker      from 'gulp-parker';
 import minifyCSS   from 'gulp-minify-css';
 
-var paths = {
-    folders: {
-        css:     'src/stylesheets/css/',
-        cssTemp: 'temp/css-testing/'
-    },
-    files: {
-        html:    'src/templates/**/*.html',
-        swig:    ['src/templates/_swig/**/*.swig', '!src/templates/_swig/**/_*.swig',],
-        scss:    'src/stylesheets/**/*.scss',        
-        css:     'src/stylesheets/**/*.css',
-        js:      'src/scripts/**/*.js',
-        cssTemp: 'temp/css-test/**/*.css'
-    }
-};
+// Paths
+import paths       from './config/gulp-paths';
 
 
-/* File naming */
+// File naming
 gulp.task('name-lint', callback => {
     var regularExpression = /^_?[a-z0-9\-]+$/;
 
@@ -59,7 +48,7 @@ gulp.task('name-lint', callback => {
 });
 
 
-/* HTML */
+// HTML
 gulp.task('html-hint', () => {
     return gulp.src(paths.files.html)
             .pipe(htmlHint())
@@ -87,7 +76,7 @@ gulp.task('test:html', callback => {
 });
 
 
-/* Stylesheets */
+// Stylesheets
 gulp.task('css-concat', (callback) => {
     var compiled = gulp.src(paths.files.scss).pipe(sass()),
         css      = gulp.src(paths.files.css);
@@ -155,7 +144,7 @@ gulp.task('test:css-redundancy', ['css-concat'], callback => {
     exec('csscss ' + paths.folders.cssTemp + 'main.css', (error, stdout) => {
         if (error) {
             console.log(error);
-        } else {
+        } else if (stdout) {
             console.log(stdout);            
         }
 
@@ -177,7 +166,7 @@ gulp.task('test', callback => {
 });
 
 
-/* Watch */
+// Watch 
 gulp.task('watch:html', () => {
     gulp.watch([paths.files.html], ['test:html']);
 });
