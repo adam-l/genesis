@@ -1,6 +1,6 @@
 {
   "name": "genesis-fed",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Less then a front-end framework, more then a boilerplate.",
   "homepage": "https://github.com/adam-l/genesis/",
   "devDependencies": {
@@ -29,6 +29,6 @@
     "url": "https://github.com/adam-l/genesis/"
   },
   "scripts": {
-    "preinstall": "gem install scss-lint; gem install csscss"
+    "preinstall": "sudo gem install scss-lint; sudo gem install csscss"
   }
 }
