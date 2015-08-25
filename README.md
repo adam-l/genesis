@@ -20,6 +20,8 @@ This section describes the project layout provided by Genesis.
 │
 ├── node_modules/
 │
+├── scripts/
+│
 ├── src/
 │   ├── components/
 │   │
