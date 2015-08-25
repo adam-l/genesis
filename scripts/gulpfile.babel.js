@@ -27,7 +27,7 @@ import paths                 from '../config/gulp-paths';
 gulp.task('test:names', callback => {
     var regularExpression = /^_?[a-z0-9\-]+$/;
 
-    nameLint('src/', {
+    nameLint('../src/', {
         'dirFormat': regularExpression,
         'fileFormats': {
             '.*': regularExpression
