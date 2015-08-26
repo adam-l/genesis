@@ -4,4 +4,8 @@ node_js:
 install:
   - npm install
 script:
-  - gulp test
+  - cd node_modules
+  - npm link gulp
+  - cd ..
+  - cd scripts
+  - npm ls
