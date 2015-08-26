@@ -9,3 +9,5 @@ script:
   - cd ..
   - cd scripts
   - npm ls
+  - cd ..
+  - gulp test
