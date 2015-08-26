@@ -4,10 +4,4 @@ node_js:
 install:
   - npm install
 script:
-  - cd node_modules
-  - npm link gulp
-  - cd ..
-  - cd scripts
-  - npm ls
-  - cd ..
-  - gulp test
+  - gulp test --gulpfile scripts/gulpfile.babel.js
