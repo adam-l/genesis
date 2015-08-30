@@ -2,6 +2,11 @@
 > Wise beginning of your next project
 
 
+## Features
+-  [EditorConfig](http://http://editorconfig.org/) file ensuring consistent formatting is preserved
+- other
+
+
 ## Browser support
 IE9+
 

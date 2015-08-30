@@ -1,0 +1,20 @@
+# top-most EditorConfig file
+root = true
+
+# Line ending
+[*]
+end_of_line = lf
+trim_trailing_whitespace = true
+
+# Charset
+[*]
+charset = utf-8
+
+# Indentation
+[*]
+indent_style = space
+indent_size = 4
+
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
